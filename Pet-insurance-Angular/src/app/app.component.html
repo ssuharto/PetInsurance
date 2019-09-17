@@ -1,0 +1,51 @@
+<div>
+  <nav class='navbar navbar-default'>
+      <div class='container fluid'>
+          <a class='navbar-brand'>{{title}}</a>
+          <ul class='nav navbar-nav'>
+              <li class ='nav-item'>
+                  <a routerLink="/welcome">Home</a>
+              </li>
+              <li class ='nav-item'>
+                      <a routerLink="/superheros">About Us</a>
+              </li>
+              <li class ='nav-item'>
+                      <a routerLink="/profile">Sign Up</a>
+              </li>
+              <li class ='nav-item'>
+                <a routerLink="/profile">Sign In</a>
+        </li>
+          </ul>
+
+      </div>
+  </nav>
+  <div class="container">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><h1 style="text-align: center">A+ Pets</h1></div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+    <div class = 'container'>
+      <p style="text-align: center">A+ Pets provides customized insurance plans to maximize benefits for the customer and the pet.</p>
+    </div>
+    <br/>
+    <br/>
+    <div class = 'container'>
+    <div class="form-group">
+        <label for="power">Pet Plans</label>
+        <select class="form-control" id="Pet" [(ngModel)]="petValue" (change)="onNavigate($event.target.value)" required>
+          <option *ngFor="let pet of petplans" [value]="pet.name" >{{pet.name}}</option>
+        </select>
+      </div>
+      </div>
+      <br/>
+      <!-- <a routerLink="/Birds">WORK</a> -->
+
+<div class = 'container'>
+
+<router-outlet></router-outlet>
+
+  </div>
+</div>
+
