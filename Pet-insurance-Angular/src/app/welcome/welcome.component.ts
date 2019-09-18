@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IPetPlans } from '../animals';
 import { InsurancePackagesService } from '../insurance-packages.service';
 
 @Component({
@@ -7,45 +9,30 @@ import { InsurancePackagesService } from '../insurance-packages.service';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
-export class WelcomeComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error("Method not implemented.");
+export class WelcomeComponent {
+  title = 'A+ Pets';
+  petplans: IPetPlans[] = [];
+  animalForm: FormGroup;
+
+  constructor(private myAnimalsService: InsurancePackagesService, private fb: FormBuilder, private router: Router ) {
+    this.petplans = myAnimalsService.getAnimals();
+    console.log(this.petplans);
   }
 
-  constructor(private routerMod: Router, private user: InsurancePackagesService) { }
-
-  pageButtonClicked() {
-    console.log('adfasdf');
-    this.routerMod.navigate(['/superheros']);
+  onNavigate(petVal) {
+    console.log('In navigate');
+    const selected = petVal;
+    console.log(selected);
+    switch (selected) {
+        case 'Birds':
+          this.router.navigate(['/welcome/Birds']);
+          break;
+        case 'Rodents':
+            this.router.navigate(['/welcome/Rodents']);
+            break;
+        case 'Reptiles':
+            this.router.navigate(['/welcome/Reptiles']);
+            break;
   }
-/*
-  pokemonButtonClicked() {
-    // console.log('Poke clicked');
-    this.pokes.retreivePokemon().subscribe(
-      data => {
-        const ourField = 'name';
-        console.log(data);
-        this.currentPoke = data[ourField];
-        console.log('name? ', data[ourField]);
-      }
-    );
-  } */
-
-/*   pokemonButtonClickedAgain() {
-    // console.log('Poke clicked 2');
-    this.pokes.retreivePokemon2().subscribe(
-      data => {
-        console.log(data);
-        console.log(data.base_experience);
-        console.log(data.id);
-        console.log('name ', data.name);
-      }
-    );
-  } */
-
-  myJsonClicked() {
-    // console.log('Poke clicked 2');
-    this.user.getAnimals();
-  }
-
+}
 }

@@ -23,7 +23,7 @@ export class AppComponent {
     console.log('In navigate');
     const selected = petVal;
     console.log(selected);
-    switch(selected) {
+    switch (selected) {
         case 'Birds':
           this.router.navigate(['/Birds']);
           break;
